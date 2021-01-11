@@ -1,0 +1,7 @@
+[book]
+title = "Team 100 Software Binder"
+
+authors = []
+language = "en"
+multilingual = false
+src = "src"
