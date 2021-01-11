@@ -1,8 +1,43 @@
 # Anatomy of a Basic Robot Program
 
-For those of you who made one of the VEX ProtoBots, this code will look familiar.
+We will begin by talking within the context of a VEX robot since it is much more simple than our FRC code. The code that you see below is a fully working program for the ProtoBot VEX robots that you will build early during your time on Team 100.
+
+## The Concept
+
+As you read through the code, remember the diagram below: 
+![Control Systems Cycle](./static/csa-cycle-vex.svg)
+
+This diagram explains the high level of what we do when running the ProtoBot code. When we start, our robot begins by *sensing* its current state from the sensors and joysticks. It then *interprets* the sensors to define our *actions* which are the motors moving.
+
+In the code, you will see how interpretation can exist beyond simply taking joystick inputs as we use our limit switches to see if it is safe to move our arm. In this snippet, you can see how we make a decision based on:
+
+1. What the driver **wants** to do and
+2. Whether it is safe to move the action
 
 > Lines that start with // are comments and are used to explain, but have no impact on how the robot actually works.
+
+
+```c
+// Does the driver want to move up and is it safe to do so?
+if((leftButtonUp == 1) && (armUpLimitSwitch == 0))
+{
+    // If so, move up
+    motor[Arm] = 127;
+}
+// Otherwise, does the driver want to move down and is it safe to do so?
+else if ((leftButtonDown == 1) && (armDownLimitSwitch == 0))
+{
+    // If so, move down
+    motor[Arm] = -127;
+}
+// Otherwise, the driver either does not want to move or wants to make an unsafe movement
+else
+{
+    // In which case we will not allow the arm to move.
+    motor[Arm] = 0;  // if you don't set the motors to 0, they will keep running forever
+}
+```
+## The Code
 
 ```c
 ////////////////////////////////////////////////////////////////////
@@ -109,31 +144,94 @@ task main()
         motor[LeftDrive] = leftJoystickValue * -1;
 
         if((leftButtonUp == 1) && (armUpLimitSwitch == 0))
-            {
-                motor[Arm] = 127;
-            }
+        {
+            motor[Arm] = 127;
+        }
         else if ((leftButtonDown == 1) && (armDownLimitSwitch == 0))
-            {
-                motor[Arm] = -127;
-            }
+        {
+            motor[Arm] = -127;
+        }
         else
-            {
-                motor[Arm] = 0;  // if you don't set the motors to 0, they will keep running forever
-            }
+        {
+            motor[Arm] = 0;  // if you don't set the motors to 0, they will keep running forever
+        }
 
         if(rightButtonUp == 1)
-            {
-                motor[IntakeWheel] = 127;
-            }
-        else if (rightButtonDown == 1)
-            {
-                motor[IntakeWheel] = -127;
-            }
-        else
-            {
-                motor[IntakeWheel] = 0;
-            }
+        {
+            motor[IntakeWheel] = 127;
         }
+        else if (rightButtonDown == 1)
+        {
+            motor[IntakeWheel] = -127;
+        }
+        else
+        {
+            motor[IntakeWheel] = 0;
+        }
+    }
   }
-
 ```
+## The Code Explained
+### Configuration
+By default, your robot will not know what is plugged into what port on your VEX Cortex. At the very top of the code, we can tell our robot what is plugged into where. This has a couple of benefits:
+
+- Creates a source of truth for what is plugged into where into our program
+- Allows us to refer to motors and sensors by names (e.g. `IntakeWheel`) rather than ports
+- Makes it easy to update the code when there is a change to ports, since a device like `IntakeWheel` can just be reassigned to a new port, rather than having to replace all uses in the code
+
+The configuration lines are not written by hand, but rather configured through the RobotC Robot Configuration window.
+
+### task main()
+When your robot reads your code, it needs to know where to start. Imagine how it difficult it would be for you to assemble a bed if there was no starting point! When you turn your Cortex on, it knows to look for something called `task main()` as the starting point for your code.
+
+Since our robot knows to look to this location as the starting point, we put our entire robot code inside of this task.
+
+### Variables
+
+Variables are like a bucket that can store information. We put our sensor and joystick values into buckets so that we can then use their values to *interpret* intent.
+
+Variables have a specific *type* associated to them. A type is a specific format of information. Think of it like a calculator. It wouldn't make sense to put a photograph in to your calculator. So, your calculator expects your numbers in a specific format, usually decimals. Programs usually store numbers, true/false, and text. The types that are common in RobotC are:
+
+| Name   | Type       | Min     | Max    | Example Values |
+|--------|------------|---------|--------|----------------|
+| int    | Integer    | -32,767 | 32,767 | -1, 15         |
+| bool   | True/False |         |        | true, false    |
+| string | Text       |         |        | "abc"          |
+| float  | Decimal    | Varies  | Varies | 0.123          |
+| char   | Integer    | -127    | 127    | 'A', 1         |
+
+Our code exclusively uses int and bool. When we use [conditionals](#conditionals), we use bools even if we don't define them.
+
+#### One Value
+
+> Variables must always have one and only one value
+
+This is one of the most important concepts in programming. Let's take a look at what this means with one of the lines in our program:
+
+```c
+int rightJoystickValue = 0;
+```
+
+Though this line seems simple, it is really powerful. With one line, we can tell our robot to:
+- Create a new variable/bucket of type `int`
+- Assign the name `rightJoystickValue` to that new variable
+- Set `rightJoystickValue`'s value to `0`.
+
+Now, when we use `rightJoystickValue` in our code, it returns `0`. However, `rightJoystickValue` does not always have to be `0`. Shortly after in the code, we call
+
+```c
+rightJoystickValue = vexRT[Ch2];
+```
+This line, once again, does many things with very little code. You will notice that `int` is missing, since we don't want to create a new variable, we want to override the value of `rightJoystickValue`.
+
+This line:
+- Asks the joystick for the value of Channel 2
+- Finds the variable called `rightJoystickValue`
+- Copies the value from Channel 2 to the bucket called `rightJoystickValue`
+
+### Conditionals
+
+## Sources
+- [https://gitlab.com/-/snippets/2042879](https://gitlab.com/-/snippets/2042879)
+- [https://www.ddtwo.org/site/handlers/filedownload.ashx?moduleinstanceid=28565&dataid=40000&FileName=RobotC%20Programming%20Guide.pdf](https://www.ddtwo.org/site/handlers/filedownload.ashx?moduleinstanceid=28565&dataid=40000&FileName=RobotC%20Programming%20Guide.pdf)
+- [https://en.wikipedia.org/wiki/C_data_types](https://en.wikipedia.org/wiki/C_data_types)
