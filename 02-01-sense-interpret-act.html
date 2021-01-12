@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Sense, Interpret, Act - Team 100 Software Binder</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="02-00-programming-concepts.html"><strong aria-hidden="true">2.</strong> Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02-01-sense-interpret-act.html" class="active"><strong aria-hidden="true">2.1.</strong> Sense, Interpret, Act</a></li><li class="chapter-item expanded "><a href="02-02-basic-robot-code.html"><strong aria-hidden="true">2.2.</strong> Anatomy of a Robot Program</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Team 100 Software Binder</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#sense-interpret-act" id="sense-interpret-act">Sense, Interpret Act</a></h1>
+<p>The Control Systems team has one high level job: take inputs, process them, then produce outputs.</p>
+<h2><a class="header" href="#the-control-systems-cycle" id="the-control-systems-cycle">The Control Systems Cycle</a></h2>
+<p>All development revolves around the <em>Control Systems Cycle</em>, which are the actions that your robot does tens of times per second.</p>
+<h3><a class="header" href="#sense" id="sense">Sense</a></h3>
+<p>Sensing is about having your robot understand its surroundings. If a robot can’t understand its surroundings, it wouldn’t know what to do! In its most basic form, a robot can sense inputs from a joystick. A handheld joystick can send a decimal value between -1 and 1 on the vertical and horizontal axis for both sticks. It also can send whether a button is pressed or not.</p>
+<p>However, the real power comes through sensors. As the name suggests, a sensor’s job is to sense things about the robot. With that data, the robot can make decisions without needing a driver to tell it so. But why would I want the robot to make decisions on its own? If a robot can make decisions on its own, then it means that the driver or operator has to spend less time worrying about the details of movement.</p>
+<p>Let’s take an elevator in a skyscraper to understand the power of sensors. When you are in an elevator, you press a button and the elevator goes where you want it to. That is because an encoder, a sensor that can tell position, knows where the elevator is at all times. If it didn’t, you would have to manually control the velocity of the elevator at all times, which would be more work for you and be more likely to fail.</p>
+<h3><a class="header" href="#interpret" id="interpret">Interpret</a></h3>
+<p>Once you can sense data, it is time to process it. In robotics, we use software to process our input data and turn it into an actionable plan. If the elevator in the previous section knows where it is, that doesn’t mean anything if it can’t establish a plan for its next action.</p>
+<p>Interpreting data once again is simple and can grow to be very complex. In a typical drive-train robot, interpreting is a matter of taking joystick inputs, scaling them if necessary, and passing them to the drive-train motors. However, if you have an encoder, you may want to have a mechanism go to a specific position or velocity, and in your interpret step, you would do math to control the output to achieve your end goal.</p>
+<h3><a class="header" href="#act" id="act">Act</a></h3>
+<p>Acting is where your robot actually moves. After all, the entire purpose of a robot is to move. Usually, you will control motors. Motors turn in a circle, and can spin super quickly, slowly, or somewhere in the middle. When you drive a car, the motors cause the wheels to turn, which propels the car forward.</p>
+<p>The other kind of acting, which is more rare, is a solenoid. These are systems that can either be out or in. They do not have in-between states. The value of solenoids is that they are simpler to control (since they only have two values), and they can move quickly (explosive), but they are not designed for a lot of the tasks that we have in robotics.</p>
+<h2><a class="header" href="#the-role-of-software" id="the-role-of-software">The Role of Software</a></h2>
+<p>As I mentioned earlier, software is responsible for the interpretation phase. All a robot program does is take inputs from sensors or joysticks, figure out the next step, and then tell the motors and solenoids to do their thing. While this is simple in theory, the difficulty and fun in the process comes from getting to figure out exactly what needs to happen in the interpretation phase. Do you remember those input output flow charts from elementary school math? Software is basically a input output flow chart for a robot.</p>
+<p>The good thing is that for a getting started project, interpretation is very easy. As you learn, it gets more complex but you will still be able to handle it.</p>
+<h2><a class="header" href="#the-role-of-electronics" id="the-role-of-electronics">The Role of Electronics</a></h2>
+<p>Now that we understand the role of software, we now need to understand the role of electronics.</p>
+<p>Electronics is responsible for the infrastructure that allows this system to exist. All of the sensors are chosen in a collaboration between software, electronics, and mechanics interests.</p>
+<p>They are also responsible for the micro-controller and power delivery. A micro-controller is a computer that is designed to run the robot program. As of the time of writing this post, it is called the RoboRIO. The RoboRIO, the sensors, and the motors all require power, so it is also the responsibility of Electronics students to provide power to the robot.</p>
+<p>Wiring, however, is the most time-consuming part of the Electronics Process. Wires act like the nervous system of a robot. They allow the RoboRIO to talk to sensors and motors, and act as the bridge between the three steps of the Control Systems Cycle. During your time learning electronics, you will learn how to make many different types of wires and the purposes for each.</p>
+<h2><a class="header" href="#sources" id="sources">Sources</a></h2>
+<ul>
+<li><a href="https://alexbeaver.com/blog/control-systems-cycle">https://alexbeaver.com/blog/control-systems-cycle</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="02-00-programming-concepts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="02-02-basic-robot-code.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="02-00-programming-concepts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="02-02-basic-robot-code.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
