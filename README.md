@@ -1,7 +1,7 @@
 ![github pages](https://github.com/alexander-beaver/software-binder/workflows/github%20pages/badge.svg)
 # Access the Binder
 
-[binder.team100.org](https://binder.team100.org)
+[https://alexander-beaver.github.io/software-binder](https://alexander-beaver.github.io/software-binder)
 
 ## Editing and Building the Binder
 
