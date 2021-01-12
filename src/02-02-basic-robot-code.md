@@ -239,6 +239,43 @@ At the sense of interpreting data is logic. All logic boils down to the followin
 - or
 
 Think about it like this: *__If__ it is __not__ raining __and__ it is warm, __then__ I will go to the beach. __Otherwise__, I will go to the mall*.
+
+We can take a look at our code in the same way. Let's take this snippet for an example:
+```c
+if((leftButtonUp == 1) && (armUpLimitSwitch == 0))
+{
+    motor[Arm] = 127;
+}
+else if ((leftButtonDown == 1) && (armDownLimitSwitch == 0))
+{
+    motor[Arm] = -127;
+}
+else
+{
+    motor[Arm] = 0;  // if you don't set the motors to 0, they will keep running forever
+}
+```
+
+This code can be read as: If the driver is signaling to move the arm up, and the arm is not at its highest position, then move the arm up. However, if that is not true, let's try seeing if the driver wants to move down. If the driver is signalling to move the arm down and it is safe to move down, then move the arm down. However, if neither of the previous are true, the stop the arm.
+
+What situations end up with the arm staying stopped?
+- The driver does not signal to move up or down
+- The driver signals to move up, but the arm is at the maximum height
+- The diver signals to move down, but the arm is at the minimum height
+
+However, assuming that the arm is not at either extreme, what happens if the driver presses both the up and down button at the same time?
+
+The answer lies in `else if`. Since we test for up first, if the driver presses up and down at the same time, the up condition being true causes the `else if` and the `else` conditions to never be evaluated, the arm will move up. However, if both are pressed and arm is at the maximum, since the first condition would be false, the second would be evaluated and return true, thus moving the arm down.
+
+### Telling Motors to Turn
+
+This is the code that tells our motor to turn:
+```c
+motor[Arm] = 127;
+```
+
+You may notice that this looks like setting a variable. That is because you are setting a variable. `motor`, just like `vexRT` is a special variable that the VEX Cortex knows about what can help you interact with the Cortex outputs. 
+
 ## Sources
 - [https://gitlab.com/-/snippets/2042879](https://gitlab.com/-/snippets/2042879)
 - [https://www.ddtwo.org/site/handlers/filedownload.ashx?moduleinstanceid=28565&dataid=40000&FileName=RobotC%20Programming%20Guide.pdf](https://www.ddtwo.org/site/handlers/filedownload.ashx?moduleinstanceid=28565&dataid=40000&FileName=RobotC%20Programming%20Guide.pdf)
