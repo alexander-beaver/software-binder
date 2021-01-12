@@ -230,7 +230,15 @@ This line:
 - Copies the value from Channel 2 to the bucket called `rightJoystickValue`
 
 ### Conditionals
+At the sense of interpreting data is logic. All logic boils down to the following concepts:
+- if
+- then
+- else
+- not
+- and
+- or
 
+Think about it like this: *__If__ it is __not__ raining __and__ it is warm, __then__ I will go to the beach. __Otherwise__, I will go to the mall*.
 ## Sources
 - [https://gitlab.com/-/snippets/2042879](https://gitlab.com/-/snippets/2042879)
 - [https://www.ddtwo.org/site/handlers/filedownload.ashx?moduleinstanceid=28565&dataid=40000&FileName=RobotC%20Programming%20Guide.pdf](https://www.ddtwo.org/site/handlers/filedownload.ashx?moduleinstanceid=28565&dataid=40000&FileName=RobotC%20Programming%20Guide.pdf)
