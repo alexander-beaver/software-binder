@@ -385,6 +385,34 @@ task main()
 <li>or</li>
 </ul>
 <p>Think about it like this: <em><strong>If</strong> it is <strong>not</strong> raining <strong>and</strong> it is warm, <strong>then</strong> I will go to the beach. <strong>Otherwise</strong>, I will go to the mall</em>.</p>
+<p>We can take a look at our code in the same way. Let's take this snippet for an example:</p>
+<pre><code class="language-c">if((leftButtonUp == 1) &amp;&amp; (armUpLimitSwitch == 0))
+{
+    motor[Arm] = 127;
+}
+else if ((leftButtonDown == 1) &amp;&amp; (armDownLimitSwitch == 0))
+{
+    motor[Arm] = -127;
+}
+else
+{
+    motor[Arm] = 0;  // if you don't set the motors to 0, they will keep running forever
+}
+</code></pre>
+<p>This code can be read as: If the driver is signaling to move the arm up, and the arm is not at its highest position, then move the arm up. However, if that is not true, let's try seeing if the driver wants to move down. If the driver is signalling to move the arm down and it is safe to move down, then move the arm down. However, if neither of the previous are true, the stop the arm.</p>
+<p>What situations end up with the arm staying stopped?</p>
+<ul>
+<li>The driver does not signal to move up or down</li>
+<li>The driver signals to move up, but the arm is at the maximum height</li>
+<li>The diver signals to move down, but the arm is at the minimum height</li>
+</ul>
+<p>However, assuming that the arm is not at either extreme, what happens if the driver presses both the up and down button at the same time?</p>
+<p>The answer lies in <code>else if</code>. Since we test for up first, if the driver presses up and down at the same time, the up condition being true causes the <code>else if</code> and the <code>else</code> conditions to never be evaluated, the arm will move up. However, if both are pressed and arm is at the maximum, since the first condition would be false, the second would be evaluated and return true, thus moving the arm down.</p>
+<h3><a class="header" href="#telling-motors-to-turn" id="telling-motors-to-turn">Telling Motors to Turn</a></h3>
+<p>This is the code that tells our motor to turn:</p>
+<pre><code class="language-c">motor[Arm] = 127;
+</code></pre>
+<p>You may notice that this looks like setting a variable. That is because you are setting a variable. <code>motor</code>, just like <code>vexRT</code> is a special variable that the VEX Cortex knows about what can help you interact with the Cortex outputs. </p>
 <h2><a class="header" href="#sources" id="sources">Sources</a></h2>
 <ul>
 <li><a href="https://gitlab.com/-/snippets/2042879">https://gitlab.com/-/snippets/2042879</a></li>
