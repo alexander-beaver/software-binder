@@ -10,6 +10,8 @@ In order to write Java code, you will need the WPILib Software and Driver Statio
 
 To install your software, please visit [this website](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/index.html) and follow all of the steps **excluding** *Installing LabVIEW for FRC (LabVIEW only)*.
 
+> All team-provided computers are Windows x86-64. When downloading installers, please look for *win64*, *Windows64*, *x64*, *x86-64* or *amd64*. If there is only one installer, use that installer.
+
 You will need to ask a Control Systems mentor or veteran for the registration key for National Instruments (Driver Station).
 
 ## A Note for Mac Users
