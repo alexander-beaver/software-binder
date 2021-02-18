@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Sense, Interpret, Act - Team 100 Software Binder</title>
+        <title>Sensors - Team 100 Software Binder</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="02-00-controls-basics.html"><strong aria-hidden="true">2.</strong> Control Systems Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02-01-sense-interpret-act.html" class="active"><strong aria-hidden="true">2.1.</strong> Sense, Interpret, Act</a></li><li class="chapter-item expanded "><a href="02-02-basic-robot-code.html"><strong aria-hidden="true">2.2.</strong> Anatomy of a Robot Program</a></li><li class="chapter-item expanded "><a href="02-03-sensors.html"><strong aria-hidden="true">2.3.</strong> Sensors</a></li></ol></li><li class="chapter-item expanded "><a href="03-00-java-basics.html"><strong aria-hidden="true">3.</strong> Java Basics</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="02-00-controls-basics.html"><strong aria-hidden="true">2.</strong> Control Systems Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02-01-sense-interpret-act.html"><strong aria-hidden="true">2.1.</strong> Sense, Interpret, Act</a></li><li class="chapter-item expanded "><a href="02-02-basic-robot-code.html"><strong aria-hidden="true">2.2.</strong> Anatomy of a Robot Program</a></li><li class="chapter-item expanded "><a href="02-03-sensors.html" class="active"><strong aria-hidden="true">2.3.</strong> Sensors</a></li></ol></li><li class="chapter-item expanded "><a href="03-00-java-basics.html"><strong aria-hidden="true">3.</strong> Java Basics</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,45 +163,56 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#sense-interpret-act" id="sense-interpret-act">Sense, Interpret Act</a></h1>
-<p>The Control Systems team has one high level job: take inputs, process them, then produce outputs.</p>
-<h2><a class="header" href="#the-control-systems-cycle" id="the-control-systems-cycle">The Control Systems Cycle</a></h2>
-<p>All development revolves around the <em>Control Systems Cycle</em>, which are the actions that your robot does tens of times per second.</p>
-<h3><a class="header" href="#sense" id="sense">Sense</a></h3>
-<p>Sensing is about having your robot understand its surroundings. If a robot can’t understand its surroundings, it wouldn’t know what to do! In its most basic form, a robot can sense inputs from a joystick. A handheld joystick can send a decimal value between -1 and 1 on the vertical and horizontal axis for both sticks. It also can send whether a button is pressed or not.</p>
-<p>However, the real power comes through sensors. As the name suggests, a sensor’s job is to sense things about the robot. With that data, the robot can make decisions without needing a driver to tell it so. But why would I want the robot to make decisions on its own? If a robot can make decisions on its own, then it means that the driver or operator has to spend less time worrying about the details of movement.</p>
-<p>Let’s take an elevator in a skyscraper to understand the power of sensors. When you are in an elevator, you press a button and the elevator goes where you want it to. That is because an encoder, a sensor that can tell position, knows where the elevator is at all times. If it didn’t, you would have to manually control the velocity of the elevator at all times, which would be more work for you and be more likely to fail.</p>
-<h3><a class="header" href="#interpret" id="interpret">Interpret</a></h3>
-<p>Once you can sense data, it is time to process it. In robotics, we use software to process our input data and turn it into an actionable plan. If the elevator in the previous section knows where it is, that doesn’t mean anything if it can’t establish a plan for its next action.</p>
-<p>Interpreting data once again is simple and can grow to be very complex. In a typical drive-train robot, interpreting is a matter of taking joystick inputs, scaling them if necessary, and passing them to the drive-train motors. However, if you have an encoder, you may want to have a mechanism go to a specific position or velocity, and in your interpret step, you would do math to control the output to achieve your end goal.</p>
-<h3><a class="header" href="#act" id="act">Act</a></h3>
-<p>Acting is where your robot actually moves. After all, the entire purpose of a robot is to move. Usually, you will control motors. Motors turn in a circle, and can spin super quickly, slowly, or somewhere in the middle. When you drive a car, the motors cause the wheels to turn, which propels the car forward.</p>
-<p>The other kind of acting, which is more rare, is a solenoid. These are systems that can either be out or in. They do not have in-between states. The value of solenoids is that they are simpler to control (since they only have two values), and they can move quickly (explosive), but they are not designed for a lot of the tasks that we have in robotics.</p>
-<h2><a class="header" href="#the-role-of-software" id="the-role-of-software">The Role of Software</a></h2>
-<p>As I mentioned earlier, software is responsible for the interpretation phase. All a robot program does is take inputs from sensors or joysticks, figure out the next step, and then tell the motors and solenoids to do their thing. While this is simple in theory, the difficulty and fun in the process comes from getting to figure out exactly what needs to happen in the interpretation phase. Do you remember those input output flow charts from elementary school math? Software is basically a input output flow chart for a robot.</p>
-<p>The good thing is that for a getting started project, interpretation is very easy. As you learn, it gets more complex but you will still be able to handle it.</p>
-<h2><a class="header" href="#the-role-of-electronics" id="the-role-of-electronics">The Role of Electronics</a></h2>
-<p>Now that we understand the role of software, we now need to understand the role of electronics.</p>
-<p>Electronics is responsible for the infrastructure that allows this system to exist. All of the sensors are chosen in a collaboration between software, electronics, and mechanics interests.</p>
-<p>They are also responsible for the micro-controller and power delivery. A micro-controller is a computer that is designed to run the robot program. As of the time of writing this post, it is called the RoboRIO. The RoboRIO, the sensors, and the motors all require power, so it is also the responsibility of Electronics students to provide power to the robot.</p>
-<p>Wiring, however, is the most time-consuming part of the Electronics Process. Wires act like the nervous system of a robot. They allow the RoboRIO to talk to sensors and motors, and act as the bridge between the three steps of the Control Systems Cycle. During your time learning electronics, you will learn how to make many different types of wires and the purposes for each.</p>
-<h2><a class="header" href="#sources" id="sources">Sources</a></h2>
+                        <h1><a class="header" href="#sensors" id="sensors">Sensors</a></h1>
+<p>Sensors allow our robot to get an understanding of itself and its surroundings. Some examples of what we would do with sensors include:</p>
 <ul>
-<li><a href="https://alexbeaver.com/blog/control-systems-cycle">https://alexbeaver.com/blog/control-systems-cycle</a></li>
+<li>Find the angle of an arm</li>
+<li>Find the position of an elevator</li>
+<li>Detect if a game object has passed a certain area in our robot</li>
+<li>Detect how far away we are from a game object</li>
 </ul>
+<p>They tend to be separated into three groups: analog, digital, and other.</p>
+<h2><a class="header" href="#types-of-sensors" id="types-of-sensors">Types of Sensors</a></h2>
+<h3><a class="header" href="#analog" id="analog">Analog</a></h3>
+<p>Analog sensors measure on a gradient (has intermediate values). They are often used for measuring physical attributes, such as the angle of a mechanism.</p>
+<p>Here is a graph showing sample Analog (red) and Digital (blue) values over time
+<img src="./static/analog-vs-digital-sensors.svg" alt="Analog and Digital Signals" /></p>
+<h4><a class="header" href="#port-locations" id="port-locations">Port Locations</a></h4>
+<p>On a RoboRIO (FRC), Analog Inputs are connected to the following ports:
+<img src="./static/roborio-aio.svg" alt="Analog Inputs on a RoboRIO" />
+<a href="https://docs.wpilib.org/en/stable/docs/hardware/sensors/analog-inputs-hardware.html">SOURCE</a></p>
+<h3><a class="header" href="#digital" id="digital">Digital</a></h3>
+<p>Digital sensors measure with values of 0 (<code>false</code>) or 1 (<code>true</code>). They are usually used to detect if something is present (such as through touch), though some sensors measuring distance may be considered digital.</p>
+<h4><a class="header" href="#port-locations-1" id="port-locations-1">Port Locations</a></h4>
+<p>On a RoboRIO (FRC), Digital Inputs are connected to the following ports:
+<img src="./static/roborio-dio.svg" alt="Digital Inputs on a RoboRIO" />
+<a href="https://docs.wpilib.org/en/stable/docs/hardware/sensors/digital-inputs-hardware.html">SOURCE</a></p>
+<h3><a class="header" href="#other" id="other">Other</a></h3>
+<p>Some sensors, such as cameras, LiDAR, IMU (measuring pitch, yaw, and roll), and encoders (measure the distance a mechanism has moved) are technically digital, but their raw signal cannot be used without adding extra logic to interpret what the signals mean.</p>
+<h3><a class="header" href="#examples-of-sensors" id="examples-of-sensors">Examples of Sensors</a></h3>
+<p>This is only intended to be a beginning look at sensors. Look at <a href="https://docs.wpilib.org">docs.wpilib.org</a> for more info on sensors used in FRC. As you can see, most of the sensors we use are digital.</p>
+<table><thead><tr><th>Name</th><th>Type</th><th>Measures</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Limit Switch</td><td>Digital</td><td>Whether the switch is pushed</td><td></td></tr>
+<tr><td>Hall Effect</td><td>Digital</td><td>Whether a magnet is close to the reader</td><td></td></tr>
+<tr><td>Time of Flight</td><td>Other (I2C)</td><td>Distance to an object</td><td></td></tr>
+<tr><td>Encoder (Quadrature)</td><td>Digital</td><td>How far a motor has turned</td><td>Requires 2 DIO Ports</td></tr>
+<tr><td>Inertial Measurement Unit (IMU)</td><td>Other (I2C)</td><td>The pitch, yaw, and roll of the robot</td><td>Place near the center of the robot</td></tr>
+<tr><td>Ultrasonic Range Finder</td><td>Analog</td><td>Distance to an object</td><td></td></tr>
+</tbody></table>
+<h2><a class="header" href="#sensors-in-vex-code" id="sensors-in-vex-code">Sensors in VEX Code</a></h2>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="02-00-controls-basics.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="02-02-basic-robot-code.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="02-02-basic-robot-code.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="03-00-java-basics.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -213,13 +224,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="02-00-controls-basics.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="02-02-basic-robot-code.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="02-02-basic-robot-code.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="03-00-java-basics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

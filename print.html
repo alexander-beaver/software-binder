@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="02-00-programming-concepts.html"><strong aria-hidden="true">2.</strong> Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02-01-sense-interpret-act.html"><strong aria-hidden="true">2.1.</strong> Sense, Interpret, Act</a></li><li class="chapter-item expanded "><a href="02-02-basic-robot-code.html"><strong aria-hidden="true">2.2.</strong> Anatomy of a Robot Program</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="02-00-controls-basics.html"><strong aria-hidden="true">2.</strong> Control Systems Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02-01-sense-interpret-act.html"><strong aria-hidden="true">2.1.</strong> Sense, Interpret, Act</a></li><li class="chapter-item expanded "><a href="02-02-basic-robot-code.html"><strong aria-hidden="true">2.2.</strong> Anatomy of a Robot Program</a></li><li class="chapter-item expanded "><a href="02-03-sensors.html"><strong aria-hidden="true">2.3.</strong> Sensors</a></li></ol></li><li class="chapter-item expanded "><a href="03-00-java-basics.html"><strong aria-hidden="true">3.</strong> Java Basics</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -461,6 +461,54 @@ else
 <li><a href="https://www.ddtwo.org/site/handlers/filedownload.ashx?moduleinstanceid=28565&amp;dataid=40000&amp;FileName=RobotC%20Programming%20Guide.pdf">https://www.ddtwo.org/site/handlers/filedownload.ashx?moduleinstanceid=28565&amp;dataid=40000&amp;FileName=RobotC%20Programming%20Guide.pdf</a></li>
 <li><a href="https://en.wikipedia.org/wiki/C_data_types">https://en.wikipedia.org/wiki/C_data_types</a></li>
 </ul>
+<h1><a class="header" href="#sensors" id="sensors">Sensors</a></h1>
+<p>Sensors allow our robot to get an understanding of itself and its surroundings. Some examples of what we would do with sensors include:</p>
+<ul>
+<li>Find the angle of an arm</li>
+<li>Find the position of an elevator</li>
+<li>Detect if a game object has passed a certain area in our robot</li>
+<li>Detect how far away we are from a game object</li>
+</ul>
+<p>They tend to be separated into three groups: analog, digital, and other.</p>
+<h2><a class="header" href="#types-of-sensors" id="types-of-sensors">Types of Sensors</a></h2>
+<h3><a class="header" href="#analog" id="analog">Analog</a></h3>
+<p>Analog sensors measure on a gradient (has intermediate values). They are often used for measuring physical attributes, such as the angle of a mechanism.</p>
+<p>Here is a graph showing sample Analog (red) and Digital (blue) values over time
+<img src="./static/analog-vs-digital-sensors.svg" alt="Analog and Digital Signals" /></p>
+<h4><a class="header" href="#port-locations" id="port-locations">Port Locations</a></h4>
+<p>On a RoboRIO (FRC), Analog Inputs are connected to the following ports:
+<img src="./static/roborio-aio.svg" alt="Analog Inputs on a RoboRIO" />
+<a href="https://docs.wpilib.org/en/stable/docs/hardware/sensors/analog-inputs-hardware.html">SOURCE</a></p>
+<h3><a class="header" href="#digital" id="digital">Digital</a></h3>
+<p>Digital sensors measure with values of 0 (<code>false</code>) or 1 (<code>true</code>). They are usually used to detect if something is present (such as through touch), though some sensors measuring distance may be considered digital.</p>
+<h4><a class="header" href="#port-locations-1" id="port-locations-1">Port Locations</a></h4>
+<p>On a RoboRIO (FRC), Digital Inputs are connected to the following ports:
+<img src="./static/roborio-dio.svg" alt="Digital Inputs on a RoboRIO" />
+<a href="https://docs.wpilib.org/en/stable/docs/hardware/sensors/digital-inputs-hardware.html">SOURCE</a></p>
+<h3><a class="header" href="#other" id="other">Other</a></h3>
+<p>Some sensors, such as cameras, LiDAR, IMU (measuring pitch, yaw, and roll), and encoders (measure the distance a mechanism has moved) are technically digital, but their raw signal cannot be used without adding extra logic to interpret what the signals mean.</p>
+<h3><a class="header" href="#examples-of-sensors" id="examples-of-sensors">Examples of Sensors</a></h3>
+<p>This is only intended to be a beginning look at sensors. Look at <a href="https://docs.wpilib.org">docs.wpilib.org</a> for more info on sensors used in FRC. As you can see, most of the sensors we use are digital.</p>
+<table><thead><tr><th>Name</th><th>Type</th><th>Measures</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Limit Switch</td><td>Digital</td><td>Whether the switch is pushed</td><td></td></tr>
+<tr><td>Hall Effect</td><td>Digital</td><td>Whether a magnet is close to the reader</td><td></td></tr>
+<tr><td>Time of Flight</td><td>Other (I2C)</td><td>Distance to an object</td><td></td></tr>
+<tr><td>Encoder (Quadrature)</td><td>Digital</td><td>How far a motor has turned</td><td>Requires 2 DIO Ports</td></tr>
+<tr><td>Inertial Measurement Unit (IMU)</td><td>Other (I2C)</td><td>The pitch, yaw, and roll of the robot</td><td>Place near the center of the robot</td></tr>
+<tr><td>Ultrasonic Range Finder</td><td>Analog</td><td>Distance to an object</td><td></td></tr>
+</tbody></table>
+<h2><a class="header" href="#sensors-in-vex-code" id="sensors-in-vex-code">Sensors in VEX Code</a></h2>
+<h1><a class="header" href="#java-basics" id="java-basics">Java Basics</a></h1>
+<p>For FRC programming, Team 100 uses the Java programming language. In this section, we will begin to bridge from VEX programming over to Java programming while explaining programming concepts in more depth.</p>
+<h2><a class="header" href="#setting-up-your-development-environment" id="setting-up-your-development-environment">Setting Up Your Development Environment</a></h2>
+<p>In order to write Java code, you will need the WPILib Software and Driver Station.</p>
+<blockquote>
+<p>If you would like a team-provided computer, please contact an IT student or mentor</p>
+</blockquote>
+<p>To install your software, please visit <a href="https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/index.html">this website</a> and follow all of the steps <strong>excluding</strong> <em>Installing LabVIEW for FRC (LabVIEW only)</em>.</p>
+<p>You will need to ask a Control Systems mentor or veteran for the registration key for National Instruments (Driver Station).</p>
+<h2><a class="header" href="#a-note-for-mac-users" id="a-note-for-mac-users">A Note for Mac Users</a></h2>
+<p>If you have a Mac, you may be unable to use certain features. The FRC software was designed around using PCs, and as of the time of writing this, FRC Game Tools (including Driver Station) are PC only. Please contact an IT student or mentor to have a team laptop assigned.</p>
 
                     </main>
 
